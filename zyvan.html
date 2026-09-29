@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RYSTONIC TRINITY Home Tech | Printer Repair, PC Build & CCTV | Baroy, Tubod, Lala, Kapatagan</title>
+  <meta name="description" content="Professional printer repair, custom PC builds, CCTV installation and printer resetter services in Baroy, Tubod, Lala and Kapatagan. Local technicians you can trust.">
+  <meta property="og:title" content="RYSTONIC TRINITY Home Tech">
+  <meta property="og:description" content="Local tech repair experts serving Baroy • Tubod • Lala • Kapatagan">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0c0914;
+      --bg-card: #161122;
+      --bg-elevated: #1e1830;
+      --border: #2a2340;
+      --text: #f3f1f7;
+      --text-muted: #9b92b0;
+      --primary: #8b5cf6;
+      --primary-dark: #7c3aed;
+      --primary-light: #a78bfa;
+      --accent: #ec4899;
+      --success: #34d399;
+      --radius: 16px;
+      --shadow: 0 20px 40px -12px rgba(0,0,0,0.45);
+      --transition: 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(12, 9, 20, 0.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid transparent;
+      transition: var(--transition);
+    }
+    nav.scrolled {
+      border-bottom-color: var(--border);
+      padding: 0.75rem 1.5rem;
+    }
+    .logo {
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+    .logo-icon {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-size: 1.1rem;
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.35);
+      flex-shrink: 0;
+    }
+    .nav-links {
+      display: none;
+      gap: 1.8rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      display: none;
+      background: var(--primary);
+      color: white !important;
+      padding: 0.55rem 1.25rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      transition: all 0.25s;
+    }
+    .nav-cta:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+    }
+    .hamburger {
+      width: 40px; height: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(12, 9, 20, 0.97);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s;
+    }
+    .mobile-menu.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .mobile-menu a {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .mobile-menu .nav-cta {
+      display: inline-flex;
+      margin-top: 1rem;
+      font-size: 1rem;
+      padding: 0.8rem 2rem;
+    }
+
+    @media (min-width: 900px) {
+      nav { padding: 1.1rem 2.5rem; }
+      nav.scrolled { padding: 0.85rem 2.5rem; }
+      .nav-links, .nav-cta { display: flex; }
+      .hamburger { display: none; }
+      .logo { font-size: 1.3rem; }
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 7rem 1.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 70% 50% at 75% 35%, rgba(139, 92, 246, 0.16), transparent),
+        radial-gradient(ellipse 50% 40% at 15% 75%, rgba(236, 72, 153, 0.1), transparent);
+    }
+    .hero-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    @media (min-width: 900px) {
+      .hero { padding: 8rem 2.5rem 5rem; }
+      .hero-inner { grid-template-columns: 1.1fr 0.9fr; gap: 3rem; }
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(139, 92, 246, 0.12);
+      border: 1px solid rgba(139, 92, 246, 0.28);
+      color: var(--primary-light);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      margin-bottom: 1.4rem;
+    }
+    .hero-badge span {
+      width: 7px; height: 7px;
+      background: var(--success);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.45; }
+    }
+    .hero h1 {
+      font-size: clamp(2.3rem, 5vw, 3.5rem);
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--primary-light), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 1.08rem;
+      color: var(--text-muted);
+      max-width: 460px;
+      margin-bottom: 2rem;
+    }
+    @media (max-width: 899px) {
+      .hero-content { text-align: center; }
+      .hero p { margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+      .hero-visual { order: -1; }
+    }
+    .hero-actions {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 1.7rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.25s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 8px 24px rgba(139, 92, 246, 0.35);
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(139, 92, 246, 0.45);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover {
+      border-color: var(--primary);
+      background: rgba(139, 92, 246, 0.08);
+    }
+    .btn-messenger {
+      background: #0084ff;
+      color: white;
+      box-shadow: 0 8px 24px rgba(0, 132, 255, 0.3);
+    }
+    .btn-messenger:hover {
+      background: #0073e0;
+      transform: translateY(-2px);
+    }
+
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+    .main-photo {
+      width: 280px;
+      height: 360px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 2px solid rgba(255,255,255,0.07);
+      position: relative;
+      background: var(--bg-card);
+    }
+    @media (min-width: 600px) {
+      .main-photo { width: 320px; height: 400px; }
+    }
+    .main-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .main-photo-info {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.4rem;
+      background: linear-gradient(to top, rgba(12,9,20,0.95), transparent);
+      text-align: center;
+    }
+    .main-photo-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.15rem; }
+    .main-photo-role { color: var(--primary-light); font-size: 0.85rem; }
+
+    .team-float {
+      position: absolute;
+      bottom: -12px; left: -20px;
+      background: white;
+      color: #1a1429;
+      padding: 0.8rem 1.1rem;
+      border-radius: 14px;
+      box-shadow: 0 16px 32px rgba(0,0,0,0.28);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      animation: floatY 5s ease-in-out infinite;
+    }
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .team-float-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #6b7280;
+      margin-bottom: 0.3rem;
+    }
+    .team-avatars { display: flex; }
+    .team-avatars img {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      border: 2px solid white;
+      margin-left: -10px;
+      object-fit: cover;
+      background: #ddd;
+    }
+    .team-avatars img:first-child { margin-left: 0; }
+
+    /* SECTIONS */
+    section {
+      padding: 5rem 1.5rem;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    @media (min-width: 900px) {
+      section { padding: 6rem 2.5rem; }
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section-header h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      margin-bottom: 0.7rem;
+    }
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    @media (min-width: 600px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 900px) {
+      .services-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      transition: all 0.3s;
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    .service-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .service-card:hover {
+      border-color: rgba(139, 92, 246, 0.45);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+    }
+    .service-icon {
+      width: 48px; height: 48px;
+      background: rgba(139, 92, 246, 0.12);
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-size: 1.35rem;
+      margin-bottom: 1.1rem;
+    }
+    .service-card h3 { font-size: 1.15rem; margin-bottom: 0.45rem; }
+    .service-card p { color: var(--text-muted); font-size: 0.9rem; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 700px) {
+      .steps { grid-template-columns: repeat(3, 1fr); }
+    }
+    .step {
+      text-align: center;
+      padding: 1.75rem 1.25rem;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s;
+    }
+    .step.visible { opacity: 1; transform: translateY(0); }
+    .step-num {
+      width: 42px; height: 42px;
+      margin: 0 auto 1rem;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+    .step h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
+    .step p { color: var(--text-muted); font-size: 0.9rem; }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 700px) {
+      .team-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .team-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem 1.4rem 2rem;
+      text-align: center;
+      transition: all 0.3s;
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    .team-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .team-card:hover {
+      border-color: rgba(139, 92, 246, 0.45);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+    }
+    .team-photo {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      margin: 0 auto 1.25rem;
+      overflow: hidden;
+      border: 3px solid rgba(139, 92, 246, 0.28);
+      box-shadow: 0 0 24px rgba(139, 92, 246, 0.2);
+    }
+    .team-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .team-card h3 { font-size: 1.15rem; margin-bottom: 0.25rem; }
+    .team-card .role {
+      color: var(--primary-light);
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 0.7rem;
+    }
+    .team-card p { color: var(--text-muted); font-size: 0.88rem; }
+
+    .areas-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.85rem;
+    }
+    .area-tag {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.25s;
+      opacity: 0;
+      transform: scale(0.92);
+    }
+    .area-tag.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .area-tag:hover {
+      border-color: var(--primary);
+      background: rgba(139, 92, 246, 0.1);
+      color: var(--primary-light);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (min-width: 700px) {
+      .why-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .why-item {
+      text-align: center;
+      padding: 1.75rem 1rem;
+      background: var(--bg-elevated);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    .why-item.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .why-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary-light), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.4rem;
+    }
+    .why-item h4 { font-size: 1.05rem; margin-bottom: 0.35rem; }
+    .why-item p { color: var(--text-muted); font-size: 0.85rem; }
+
+    .cta-banner {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.18), rgba(236, 72, 153, 0.1));
+      border: 1px solid rgba(139, 92, 246, 0.28);
+      border-radius: 20px;
+      padding: 3rem 1.75rem;
+      text-align: center;
+    }
+    .cta-banner h2 {
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      margin-bottom: 0.7rem;
+    }
+    .cta-banner p {
+      color: var(--text-muted);
+      margin-bottom: 1.6rem;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-actions {
+      display: flex;
+      gap: 0.9rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    @media (min-width: 800px) {
+      .contact-wrapper { grid-template-columns: 1fr 1.2fr; gap: 3rem; }
+    }
+    .contact-info h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.9rem;
+    }
+    .contact-info > p {
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+      font-size: 0.95rem;
+    }
+    .contact-detail {
+      display: flex;
+      gap: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+    .contact-detail-icon {
+      width: 42px; height: 42px;
+      background: rgba(139, 92, 246, 0.12);
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      font-size: 1.1rem;
+    }
+    .contact-detail strong {
+      display: block;
+      font-size: 0.88rem;
+      margin-bottom: 0.1rem;
+    }
+    .contact-detail span {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .contact-form {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.75rem;
+    }
+    @media (min-width: 600px) {
+      .contact-form { padding: 2rem; }
+    }
+    .form-group { margin-bottom: 1.15rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 0.35rem;
+      color: var(--text-muted);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      padding: 0.85rem 1rem;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.92rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 500px) {
+      .form-row { grid-template-columns: 1fr 1fr; }
+    }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    .form-success.show { display: block; }
+    .form-success .check {
+      width: 56px; height: 56px;
+      background: rgba(52, 211, 153, 0.15);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 1rem;
+      font-size: 1.6rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 1.5rem 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+    footer .logo {
+      justify-content: center;
+      margin-bottom: 0.9rem;
+      font-size: 1.15rem;
+    }
+    footer a {
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    footer a:hover { color: var(--primary-light); }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 1.2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .float-messenger {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 900;
+      width: 58px; height: 58px;
+      background: #0084ff;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 8px 24px rgba(0, 132, 255, 0.45);
+      transition: transform 0.25s, box-shadow 0.25s;
+      color: white;
+      font-size: 1.6rem;
+    }
+    .float-messenger:hover {
+      transform: scale(1.08);
+      box-shadow: 0 12px 32px rgba(0, 132, 255, 0.55);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: all 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="#" class="logo">
+      <span class="logo-icon">⚡</span>
+      RYSTONIC TRINITY
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">How It Works</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#areas">Areas</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get a Quote</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services" class="mobile-link">Services</a>
+    <a href="#process" class="mobile-link">How It Works</a>
+    <a href="#team" class="mobile-link">Team</a>
+    <a href="#areas" class="mobile-link">Areas</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+    <a href="#contact" class="nav-cta">Get a Quote</a>
+  </div>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span></span>
+          Serving Baroy • Tubod • Lala • Kapatagan
+        </div>
+        <h1>Your trusted local<br><span>tech repair experts</span></h1>
+        <p>Printer repair, custom PC builds, CCTV installation & printer resetter — done right by a local team you can trust.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
+          <a href="https://m.me/61592658601969" target="_blank" rel="noopener" class="btn btn-messenger">Message Us</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="main-photo">
+          <img src="image3.png" alt="Christson B. Ceniza – Founder">
+          <div class="main-photo-info">
+            <div class="main-photo-name">Christson B. Ceniza</div>
+            <div class="main-photo-role">Founder & Technician</div>
+          </div>
+        </div>
+        <div class="team-float">
+          <div>
+            <div class="team-float-label">OUR TEAM</div>
+            <div class="team-avatars">
+              <img src="image1.png" alt="Rusty">
+              <img src="image2.png" alt="Zyvan">
+              <img src="image3.png" alt="Christson">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="section-header reveal">
+      <h2>What We Do Best</h2>
+      <p>Professional home technology services handled with care and expertise.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" data-delay="0">
+        <div class="service-icon">🖨️</div>
+        <h3>Printer Repair</h3>
+        <p>Fast diagnosis and repair for all major brands — paper jams, connectivity, and hardware issues.</p>
+      </div>
+      <div class="service-card" data-delay="80">
+        <div class="service-icon">💻</div>
+        <h3>Custom PC Build</h3>
+        <p>High-performance computers for gaming, work, or home office — tailored to your budget.</p>
+      </div>
+      <div class="service-card" data-delay="160">
+        <div class="service-icon">📹</div>
+        <h3>CCTV Installation</h3>
+        <p>Complete security camera systems for homes and small businesses with full setup & app config.</p>
+      </div>
+      <div class="service-card" data-delay="240">
+        <div class="service-icon">🔄</div>
+        <h3>Printer Resetter</h3>
+        <p>Professional waste ink counter reset and firmware solutions to restore full functionality.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="section-header reveal">
+      <h2>How It Works</h2>
+      <p>Simple, transparent process from message to job done.</p>
+    </div>
+    <div class="steps">
+      <div class="step" data-delay="0">
+        <div class="step-num">1</div>
+        <h3>Message Us</h3>
+        <p>Tell us your location, the problem, and preferred schedule via form or Messenger.</p>
+      </div>
+      <div class="step" data-delay="100">
+        <div class="step-num">2</div>
+        <h3>Get a Quote</h3>
+        <p>We reply with clear pricing and availability. No hidden fees.</p>
+      </div>
+      <div class="step" data-delay="200">
+        <div class="step-num">3</div>
+        <h3>We Fix It</h3>
+        <p>Our technician visits your place and completes the job properly.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="team">
+    <div class="section-header reveal">
+      <h2>Meet the Team</h2>
+      <p>The people behind every successful repair and installation.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card" data-delay="0">
+        <div class="team-photo">
+          <img src="image1.png" alt="Rusty P. Cananea">
+        </div>
+        <h3>Rusty P. Cananea</h3>
+        <div class="role">Co-Founder & Technician</div>
+        <p>Printer repair, system troubleshooting, graphics design, video editing, and PC building.</p>
+      </div>
+      <div class="team-card" data-delay="100">
+        <div class="team-photo">
+          <img src="image2.png" alt="Zyvan Wayne G. Delima">
+        </div>
+        <h3>Zyvan Wayne G. Delima</h3>
+        <div class="role">Co-Founder & Technician</div>
+        <p>Printer repair, CCTV installation, graphics design, video editing, and computer system building.</p>
+      </div>
+      <div class="team-card" data-delay="200">
+        <div class="team-photo">
+          <img src="image3.png" alt="Christson B. Ceniza">
+        </div>
+        <h3>Christson B. Ceniza</h3>
+        <div class="role">Founder & Technician</div>
+        <p>Printer repair & resetter, PC building, CCTV, graphics, video editing, photography, and on-site support.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="areas">
+    <div class="section-header reveal">
+      <h2>Areas We Serve</h2>
+      <p>We only accept service requests in these locations.</p>
+    </div>
+    <div class="areas-list">
+      <div class="area-tag" data-delay="0">Baroy</div>
+      <div class="area-tag" data-delay="70">Tubod</div>
+      <div class="area-tag" data-delay="140">Lala</div>
+      <div class="area-tag" data-delay="210">Kapatagan</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-header reveal">
+      <h2>Why Choose Us</h2>
+      <p>Local expertise you can trust.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-item" data-delay="0">
+        <div class="why-number">01</div>
+        <h4>Local Team</h4>
+        <p>Based nearby for faster response.</p>
+      </div>
+      <div class="why-item" data-delay="80">
+        <div class="why-number">02</div>
+        <h4>Skilled Techs</h4>
+        <p>Experienced in printers, PCs & CCTV.</p>
+      </div>
+      <div class="why-item" data-delay="160">
+        <div class="why-number">03</div>
+        <h4>Clear Pricing</h4>
+        <p>Quotes before any work begins.</p>
+      </div>
+      <div class="why-item" data-delay="240">
+        <div class="why-number">04</div>
+        <h4>Guaranteed</h4>
+        <p>We stand behind every job we do.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="cta-banner reveal">
+      <h2>Need a repair or installation?</h2>
+      <p>Message us for a free consultation. We serve Baroy, Tubod, Lala and Kapatagan only.</p>
+      <div class="cta-actions">
+        <a href="#contact" class="btn btn-primary">Request a Quote</a>
+        <a href="https://m.me/61592658601969" target="_blank" rel="noopener" class="btn btn-messenger">Chat on Messenger</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-header reveal">
+      <h2>Get in Touch</h2>
+      <p>We’re ready to help with your home technology needs.</p>
+    </div>
+    <div class="contact-wrapper">
+      <div class="contact-info reveal">
+        <h3>Service Information</h3>
+        <p>We only visit customers in our covered areas. Tell us your location and what you need.</p>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📍</div>
+          <div>
+            <strong>Service Areas</strong>
+            <span>Baroy • Tubod • Lala • Kapatagan</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">👥</div>
+          <div>
+            <strong>Team</strong>
+            <span>Rusty P. Cananea<br>Zyvan Wayne G. Delima<br>Christson B. Ceniza</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">✉️</div>
+          <div>
+            <strong>Email</strong>
+            <span><a href="mailto:zyvandelima@gmail.com">zyvandelima@gmail.com</a></span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">🕐</div>
+          <div>
+            <strong>Availability</strong>
+            <span>By appointment — message us to schedule</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form reveal" id="formContainer">
+        <form id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" required placeholder="Your name" autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone / Messenger</label>
+              <input type="text" id="phone" required placeholder="Your contact number" autocomplete="tel">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="location">Location</label>
+            <select id="location" required>
+              <option value="" disabled selected>Select your area</option>
+              <option>Baroy</option>
+              <option>Tubod</option>
+              <option>Lala</option>
+              <option>Kapatagan</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="service">Service Needed</label>
+            <select id="service" required>
+              <option value="" disabled selected>Select a service</option>
+              <option>Printer Repair</option>
+              <option>Custom PC Build</option>
+              <option>CCTV Installation</option>
+              <option>Printer Resetter</option>
+              <option>Other / Multiple</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Describe the problem or what you need..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
+            Send Request
+          </button>
+        </form>
+
+        <div class="form-success" id="formSuccess">
+          <div class="check">✓</div>
+          <h3 style="margin-bottom:0.5rem;">Request Ready!</h3>
+          <p style="color:var(--text-muted); margin-bottom:1.25rem;">Your email client should open shortly. If it doesn’t, you can also message us on Messenger.</p>
+          <a href="https://m.me/61592658601969" target="_blank" rel="noopener" class="btn btn-messenger">Open Messenger</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <a href="#" class="logo">
+      <span class="logo-icon">⚡</span>
+      RYSTONIC TRINITY Home Tech
+    </a>
+    <p>Professional home technology repair & installation</p>
+    <p style="margin-top:0.4rem;">Baroy • Tubod • Lala • Kapatagan</p>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#team">Team</a>
+      <a href="#areas">Areas</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <p style="margin-top:1.4rem; font-size:0.82rem;">
+      Rusty P. Cananea • Zyvan Wayne G. Delima • Christson B. Ceniza
+    </p>
+    <p style="margin-top:0.4rem; font-size:0.82rem;">
+      <a href="mailto:zyvandelima@gmail.com">zyvandelima@gmail.com</a>
+    </p>
+  </footer>
+
+  <!-- Floating Messenger Button -->
+  <a href="https://www.facebook.com/profile.php?id=61592658601969" target="_blank" rel="noopener" class="float-messenger" aria-label="Message us on Messenger" title="Chat on Messenger">
+    💬
+  </a>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 30);
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+    document.querySelectorAll('.mobile-link, .mobile-menu .nav-cta').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = entry.target.dataset.delay || 0;
+          setTimeout(() => entry.target.classList.add('visible'), delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+    document.querySelectorAll('.service-card, .team-card, .why-item, .area-tag, .step, .reveal').forEach(el => {
+      observer.observe(el);
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const location = document.getElementById('location').value;
+      const service = document.getElementById('service').value;
+      const message = document.getElementById('message').value.trim();
+
+      const subject = `Service Request: ${service} - ${location}`;
+      const body = `New Service Request from RYSTONIC TRINITY Home Tech website
+
+Name: ${name}
+Phone / Messenger: ${phone}
+Location: ${location}
+Service: ${service}
+
+Message:
+${message || '(No additional message)'}
+
+---
+Sent from the website contact form`;
+
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=zyvandelima@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const mailtoUrl = `mailto:zyvandelima@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      const win = window.open(gmailUrl, '_blank');
+      if (!win || win.closed || typeof win.closed === 'undefined') {
+        window.location.href = mailtoUrl;
+      }
+
+      this.style.display = 'none';
+      document.getElementById('formSuccess').classList.add('show');
+    });
+  </script>
+</body>
+</html>
